@@ -1,0 +1,27 @@
+c:\users\azych\documents\visual studio 2017\Projects\IQTestGenerator\IQTestGenerator\bin\Debug\IQTestGenerator.exe.config
+c:\users\azych\documents\visual studio 2017\Projects\IQTestGenerator\IQTestGenerator\bin\Debug\IQTestGenerator.exe
+c:\users\azych\documents\visual studio 2017\Projects\IQTestGenerator\IQTestGenerator\bin\Debug\IQTestGenerator.pdb
+c:\users\azych\documents\visual studio 2017\Projects\IQTestGenerator\IQTestGenerator\obj\Debug\IQTestGenerator.csprojResolveAssemblyReference.cache
+c:\users\azych\documents\visual studio 2017\Projects\IQTestGenerator\IQTestGenerator\obj\Debug\MainWindow.baml
+c:\users\azych\documents\visual studio 2017\Projects\IQTestGenerator\IQTestGenerator\obj\Debug\MainWindow.g.cs
+c:\users\azych\documents\visual studio 2017\Projects\IQTestGenerator\IQTestGenerator\obj\Debug\App.g.cs
+c:\users\azych\documents\visual studio 2017\Projects\IQTestGenerator\IQTestGenerator\obj\Debug\IQTestGenerator_MarkupCompile.cache
+c:\users\azych\documents\visual studio 2017\Projects\IQTestGenerator\IQTestGenerator\obj\Debug\IQTestGenerator.g.resources
+c:\users\azych\documents\visual studio 2017\Projects\IQTestGenerator\IQTestGenerator\obj\Debug\IQTestGenerator.Properties.Resources.resources
+c:\users\azych\documents\visual studio 2017\Projects\IQTestGenerator\IQTestGenerator\obj\Debug\IQTestGenerator.csproj.GenerateResource.Cache
+c:\users\azych\documents\visual studio 2017\Projects\IQTestGenerator\IQTestGenerator\obj\Debug\IQTestGenerator.csproj.CoreCompileInputs.cache
+c:\users\azych\documents\visual studio 2017\Projects\IQTestGenerator\IQTestGenerator\obj\Debug\IQTestGenerator.exe
+c:\users\azych\documents\visual studio 2017\Projects\IQTestGenerator\IQTestGenerator\obj\Debug\IQTestGenerator.pdb
+C:\Users\azych\Desktop\IQTestGenerator\IQTestGenerator\bin\Debug\IQTestGenerator.exe.config
+C:\Users\azych\Desktop\IQTestGenerator\IQTestGenerator\bin\Debug\IQTestGenerator.exe
+C:\Users\azych\Desktop\IQTestGenerator\IQTestGenerator\bin\Debug\IQTestGenerator.pdb
+C:\Users\azych\Desktop\IQTestGenerator\IQTestGenerator\obj\Debug\MainWindow.baml
+C:\Users\azych\Desktop\IQTestGenerator\IQTestGenerator\obj\Debug\MainWindow.g.cs
+C:\Users\azych\Desktop\IQTestGenerator\IQTestGenerator\obj\Debug\App.g.cs
+C:\Users\azych\Desktop\IQTestGenerator\IQTestGenerator\obj\Debug\IQTestGenerator_MarkupCompile.cache
+C:\Users\azych\Desktop\IQTestGenerator\IQTestGenerator\obj\Debug\IQTestGenerator.g.resources
+C:\Users\azych\Desktop\IQTestGenerator\IQTestGenerator\obj\Debug\IQTestGenerator.Properties.Resources.resources
+C:\Users\azych\Desktop\IQTestGenerator\IQTestGenerator\obj\Debug\IQTestGenerator.csproj.GenerateResource.Cache
+C:\Users\azych\Desktop\IQTestGenerator\IQTestGenerator\obj\Debug\IQTestGenerator.csproj.CoreCompileInputs.cache
+C:\Users\azych\Desktop\IQTestGenerator\IQTestGenerator\obj\Debug\IQTestGenerator.exe
+C:\Users\azych\Desktop\IQTestGenerator\IQTestGenerator\obj\Debug\IQTestGenerator.pdb
