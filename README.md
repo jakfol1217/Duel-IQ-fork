@@ -1,0 +1,1 @@
+# solution-to-solve-IQ-test
