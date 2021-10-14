@@ -1,1 +1,4 @@
-# solution-to-solve-IQ-test
+## Duel-based Deep Learning system for solving IQ tests
+The official implementation of work: *Duel-based Deep Learning system for solving IQ tests*.
+
+In directory "duel_based_system" is the code that uses the data generated with code in the directory "data generator".
