@@ -242,12 +242,12 @@ else:
 
 model.summary()
 
-
+callback = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=5)
 
 # Train model on dataset
 history=model.fit_generator(generator=training_generator,epochs=n_epochs, 
                     validation_data=validation_generator, verbose=1,
-                    use_multiprocessing=True,
+                    use_multiprocessing=True, callback=[callback],
                     workers=16) 
 
 
