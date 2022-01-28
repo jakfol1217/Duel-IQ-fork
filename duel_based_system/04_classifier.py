@@ -1,18 +1,19 @@
 #!/usr/bin/env python
 
-# The code for classifier training in different scenrios:
+# The code for classifier training in different scenarios:
 # - with/without auxiliary training
 # - winner_in/ any_in pairing scheme
 
 
 import keras
 import pandas as pd
-from PIL import Image
-from PIL import ImageColor
+from PIL import Image, ImageColor
 import numpy as np
 import matplotlib.pyplot as plt
+
 from os import listdir
 from os.path import isfile, join
+
 import tensorflow as tf
 import pickle
 import glob 
@@ -22,6 +23,8 @@ from skimage.color import rgb2gray
 from keras.models import Sequential, Model
 from keras.layers import concatenate, Input, Flatten, Dense, Conv2D, GlobalAveragePooling2D, Dropout, MaxPooling2D
 from keras.models import load_model
+
+
 from tensorflow.keras import regularizers
 
 # variables
@@ -32,15 +35,14 @@ n_epoch=20
 PATH_train='./filled_in/experiment'+variant+"_train/train/"
 PATH_val='./filled_in/experiment'+variant+"_val/val/"
 PATH_test='./filled_in/experiment'+variant+"_test/test/"
-# with features needed for auxiliary training
-PATH_to_csvs="./experiment"+variant
 autoencoder_model="AE_experiment"+variant+".h5"
 test_performance_file="class_performance_exp"+variant+"_"+str(n_outputs)+".txt"
 
+#variable needed for auxiliary training
+PATH_to_csvs="./experiment"+variant
 
 
-
-# Load dictionaries needed for Data Generator
+# load dictionaries and lists needed in Data Generator
 with open("./dict_data_train_eksp"+variant+"_"+str(n_outputs)+".pickle", 'rb') as handle:
     data_train = pickle.load(handle)
 
@@ -54,7 +56,7 @@ with open("./dict_label_val_eksp"+variant+"_"+str(n_outputs)+".pickle", 'rb') as
     val_labels = pickle.load(handle)
 
 
-
+# definion of metrics used in autoencoder (needed when loading AE)
 def ssim(y_true, y_pred):
   return tf.reduce_mean(tf.image.ssim(y_true, y_pred, 1.0)) 
 
@@ -62,17 +64,18 @@ def psnr (y_true, y_pred):
   return tf.reduce_mean(tf.image.psnr(y_true, y_pred, 1.0))
 
 
-# Load trained autoencoder
+# load trained autoencoder
 autoencoder=keras.models.load_model(autoencoder_model,custom_objects={"psnr":psnr, "ssim":ssim})
 
-
+# load csv files with deatils about candidate answers needed for auxiliary training
 feature_csv=sorted(glob.glob(PATH_to_csvs+"/*.csv"))
-feature_names=sorted(['answers','width', 'figure_type', 'rotation','height', 'fillColor']) #needed fot auxiliary training
+feature_names=sorted(['answers','width', 'figure_type', 'rotation','height', 'fillColor']) 
 dict_df={key:pd.read_csv(path, sep=';', header=None,decimal=',') for path,key in zip(feature_csv, feature_names)}
 
 def unfitness_level(ID1, ID2): 
-    """ Function to compute the similarity measure between candidate-answers within filled-in RPMs
+    """ Function to compute the dissimilarity measure between candidate-answers within filled-in RPMs
     - this serves as lable in regression task (auxiliary training)"""
+
     num_task=int(ID1[:-6])
     num_cand1=int(ID1[-5])
     num_cand2=int(ID2[-5])
@@ -80,7 +83,6 @@ def unfitness_level(ID1, ID2):
     base=dict_df['figure_type'].iloc[0][num_cand1]
     other=dict_df['figure_type'].iloc[0][num_cand2]
     score += 0 if (base==other) else 1
-
 
     base=ImageColor.getcolor('#'+dict_df['fillColor'].iloc[0][num_cand1][-6:],"RGB")[0]
     other=ImageColor.getcolor('#'+dict_df['fillColor'].iloc[0][num_cand2][-6:],"RGB")[0]
@@ -103,8 +105,6 @@ def unfitness_level(ID1, ID2):
 
 ### Custom Data Generator
 # (inspiration from https://stanford.edu/~shervine/blog/keras-how-to-generate-data-on-the-fly)
-# - read data about answers features.
-# - function to compute similarity between answers
 
 class DataGenerator(keras.utils.Sequence):
     'Generates data for Keras'
@@ -161,7 +161,7 @@ class DataGenerator(keras.utils.Sequence):
               X2[i,] = plt.imread(PATH + ID[1] )
             
             # Store class
-            y[i] = self.labels[ID[0]+ID[1]]# 
+            y[i] = self.labels[ID[0]+ID[1]]
             y_aux[i] = unfitness_level(ID[0], ID[1])
 
         if self.with_aux_training==True:
@@ -171,7 +171,7 @@ class DataGenerator(keras.utils.Sequence):
 
 
 
-# Parameters for data loading
+# parameters for data loading
 params = {'dim': (150,150),
           'batch_size': 100,
           'n_classes': n_outputs,
@@ -205,7 +205,7 @@ x=Flatten()(x)
 x = Model(inputs=inputA, outputs=x)
 
 
-# the second branch opreates on the second input
+# the second branch operates on the second input
 y=autoencoder.layers[1](inputB)
 y=autoencoder.layers[2](y) 
 y=autoencoder.layers[3](y)
@@ -254,12 +254,12 @@ history=model.fit_generator(generator=training_generator,epochs=n_epochs,
 model.save("classifier_experiment"+variant+".h5")
 
 
-import pickle
-
 with open("history_class_exp"+variant+"_"+str(n_outputs)+".pickle", 'wb') as fp:
     pickle.dump(history.history, fp, protocol=pickle.HIGHEST_PROTOCOL)
 
-# classifier performance on test set 
+
+
+# load dictionary and list of files from test set
 with open("./dict_data_test_eksp"+variant+"_"+str(n_outputs)+".pickle", 'rb') as handle:
     data_test = pickle.load(handle)
 
@@ -268,6 +268,7 @@ with open("./dict_label_test_eksp"+variant+"_"+str(n_outputs)+".pickle", 'rb') a
 
 test_generator = DataGenerator(data_test, test_labels, PATH_test, shuffle=False, with_aux_training, **params)
 
+# evaluate classifier performance on test set 
 performance = model.evaluate_generator(test_generator)
 np.savetxt(test_performance_file, performance)
 
