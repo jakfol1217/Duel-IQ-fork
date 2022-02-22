@@ -1,7 +1,7 @@
 ## Duel-based Deep Learning system for solving IQ tests
 
 The official implementation of the Duel-IQ solution proposed in the article: 
-P.Tomaszewska, A. Żychowski, J. Mańdziuk, **Duel-based Deep Learning system for solving IQ tests**, *25th International Conference on Artificial Intelligence and Statistics (2022)*
+P.Tomaszewska, A. Żychowski, J. Mańdziuk, **Duel-based Deep Learning system for solving IQ tests**, *25th International Conference on Artificial Intelligence and Statistics (2022)* (url: TBD)
 
 - `duel_based_system`- directory with the code of Duel-IQ system
 - `data generator` - directory with the code for generation data used in Duel-IQ 
