@@ -1,1 +1,1 @@
-﻿The official implementation of work: Duel-based Deep Learning system for solving IQ tests.
+The official implementation of Duel-IQ system.
