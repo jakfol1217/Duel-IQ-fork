@@ -39,7 +39,7 @@ namespace IQTestsGenerator
             int count = 0;
             DateTime startTime = DateTime.Now;
 
-            StreamWriter wr = new StreamWriter(basePath + "\answers.csv");
+            StreamWriter wr = new StreamWriter(basePath + @"\answers.csv");
             int[] groups = new int[] { 1, 2, 3 };
             int[][] subgroups = new int[][] { new int[]{ 3 }, new int[] { 1, 2, 3 }, new int[] { 1, 3, 4 },
             new int[]{ 1, 2, 3, 4, 5, 6, 7, 8 }};
@@ -52,8 +52,8 @@ namespace IQTestsGenerator
                         TestsGenerator generator = new TestsGenerator();
                         generator.GenerateTest(group.ToString("D2") + "_" + test.ToString("D2"), out testGrid, out correctAnswerGrid, out answersGrid);
 
-                        SaveGridToImage(basePath + count.ToString("D5") + "_test.png", testGrid);
-                        SaveGridToImage(basePath + count.ToString("D5") + "_answers.png", answersGrid);
+                        SaveGridToImage(basePath + @"\" + count.ToString("D5") + "_test.png", testGrid);
+                        SaveGridToImage(basePath + @"\" + count.ToString("D5") + "_answers.png", answersGrid);
                         count++;
 
                         var items = answersGrid.Children.Cast<UIElement>().OfType<Shape>().ToList();
